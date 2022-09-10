@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\App.xaml
-1219584333
+3-1422220660
 
-6-502434485
+10-1721988617
 13-1310406943
-MainWindow.xaml;
+Windows\AddWindow.xaml;Windows\MainWindow.xaml;Windows\UpdateWindow.xaml;
 
-True
+False
 

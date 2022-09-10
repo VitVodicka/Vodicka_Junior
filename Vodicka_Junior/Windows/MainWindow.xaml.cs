@@ -24,5 +24,22 @@ namespace Vodicka_Junior
         {
             InitializeComponent();
         }
+
+
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            new AddWindow().Show();
+        }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new UpdateWindow().Show();
+        }
     }
 }
