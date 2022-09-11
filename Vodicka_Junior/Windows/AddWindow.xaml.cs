@@ -19,9 +19,29 @@ namespace Vodicka_Junior
     /// </summary>
     public partial class AddWindow : Window
     {
+        bool value=false;
         public AddWindow()
         {
             InitializeComponent();
+        }
+
+        public void SpaceChecker(string text)
+        {
+            if((text == null) || (text == ""))
+            {
+                MessageBox.Show("Space problem");
+                value = true;
+            }
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            SpaceChecker(date.Text);
+            SpaceChecker(type.Text);
+            SpaceChecker(PropertyType.Text);
+            SpaceChecker(investmentNeed.Text);
+            SpaceChecker(investmentEstimate.Text);
+            SpaceChecker(note.Text);
         }
     }
 }

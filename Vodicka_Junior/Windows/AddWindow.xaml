@@ -7,6 +7,52 @@
         mc:Ignorable="d"
         Title="AddWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock" x:Key="textblock">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+            <Style TargetType="TextBox" x:Key="textbox">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="150"></Setter>
+            </Style>
+        </Grid.Resources>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="First approval" Style="{StaticResource textblock}"></TextBlock>
+            <DatePicker HorizontalAlignment="Center"  Width="150" VerticalAlignment="Center" Name="date"></DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Type" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Name="type"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Property type" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Name="PropertyType"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Neccesity of investment" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Name="investmentNeed"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Estimate of investment amount" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Name="investmentEstimate"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Note" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Height="60" Width="200" TextWrapping="Wrap" Name="note" ></TextBox>
+        </StackPanel>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="50" Content="SAVE" Click="Save_Click"></Button>
     </Grid>
 </Window>
