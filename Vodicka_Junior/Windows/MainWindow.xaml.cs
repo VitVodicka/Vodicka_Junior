@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Vodicka_Junior.Structures;
 
 namespace Vodicka_Junior
 {
@@ -20,9 +21,12 @@ namespace Vodicka_Junior
     /// </summary>
     public partial class MainWindow : Window
     {
+        Background b = new Background();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = b;
+            
         }
 
 
@@ -34,7 +38,7 @@ namespace Vodicka_Junior
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            
+            b.RemoveFromCollection(listview.SelectedIndex);
         }
 
         private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)

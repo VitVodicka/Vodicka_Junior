@@ -29,10 +29,36 @@ namespace Vodicka_Junior
         public void AddingToDatabase()
         {
             DataBaseConnection();
+
         }
         public void ReadingFromDatabase()
         {
             DataBaseConnection();
+            try
+            {
+                SqlDataReader datareader;
+                
+                SqlCommand sq = new SqlCommand();
+                sq.Connection = SQLconnection;
+                datareader = sq.ExecuteReader();
+
+                if (datareader.HasRows)
+                {
+                    while (datareader.Read())
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+                datareader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
