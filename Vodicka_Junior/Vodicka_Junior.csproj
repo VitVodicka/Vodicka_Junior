@@ -63,10 +63,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>student4DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Windows\InfoWIndow.xaml.cs">
+      <DependentUpon>InfoWIndow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\AddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\InfoWIndow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

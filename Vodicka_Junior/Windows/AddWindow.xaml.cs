@@ -36,6 +36,7 @@ namespace Vodicka_Junior
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+
             SpaceChecker(date.Text);
             SpaceChecker(type.Text);
             SpaceChecker(PropertyType.Text);

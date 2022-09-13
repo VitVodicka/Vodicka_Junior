@@ -29,9 +29,15 @@ namespace Vodicka_Junior
 
             }
         }
+        public void DeleteFromDatabase()
+        {
+            DataBaseConnection();
+
+        }
         public void AddingToDatabase()
         {
             DataBaseConnection();
+
 
         }
         public void ReadingFromDatabase()

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\App.xaml
-3-1422220660
+52138200912
 
-12926560449
+141546526701
 13-1310406943
-Windows\AddWindow.xaml;Windows\MainWindow.xaml;Windows\UpdateWindow.xaml;
+Windows\AddWindow.xaml;Windows\InfoWIndow.xaml;Windows\LoginPage.xaml;Windows\MainWindow.xaml;Windows\UpdateWindow.xaml;
 
 True
 

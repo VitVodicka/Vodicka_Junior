@@ -39,7 +39,7 @@ namespace Vodicka_Junior
             SQLconnection.Open();
             SqlCommand command;
             SqlDataReader datareader;
-            String sql, Output = "";
+            String sql;
             sql = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
 
             command = new SqlCommand(sql, SQLconnection);
@@ -56,8 +56,12 @@ namespace Vodicka_Junior
                 Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
                 b.AddToCollection(build);
             }
+
             
             
+            
+
+
         }
 
 
@@ -69,7 +73,31 @@ namespace Vodicka_Junior
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
+            string sql;
+            SqlConnection SQLconnection;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            string connectionString = Properties.Settings.Default.student4ConnectionString;
+            SQLconnection = new SqlConnection(connectionString);
+            SQLconnection.Open();
+            SqlCommand command;
+
             b.RemoveFromCollection(listview.SelectedIndex);
+            sql = "DELETE FROM BuildingState WHERE Id=@Id ";
+
+            command = new SqlCommand(sql, SQLconnection);
+
+            
+           
+            
+            command.Parameters.AddWithValue("@Id", listview.SelectedIndex);
+            int rsomething = command.ExecuteNonQuery();
+                
+        }
+            /*adapter.DeleteCommand = new SqlCommand(sql,SQLconnection);
+            adapter.DeleteCommand.Parameters.AddWithValue("@Id", listview.SelectedIndex);
+            adapter.DeleteCommand.ExecuteNonQuery();*/
+
+
         }
 
         private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)

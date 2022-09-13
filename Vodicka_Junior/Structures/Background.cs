@@ -37,6 +37,7 @@ namespace Vodicka_Junior.Structures
         }
 
 
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
