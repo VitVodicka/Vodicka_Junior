@@ -37,7 +37,7 @@ namespace Vodicka_Junior
             SqlCommand command;
             SqlDataReader dataReader;
             String sql, Output = "";
-            sql = "Select Id, note from BuildingState";
+            sql = "Select Id, idBuilding from BuildingState";
 
             command = new SqlCommand(sql, SQLconnection);
             dataReader = command.ExecuteReader();
@@ -46,6 +46,8 @@ namespace Vodicka_Junior
                 Output += dataReader.GetValue(0) + " - " + dataReader.GetValue(1);
             }
             MessageBox.Show(Output);
+            Building be = new Building(1,1,1,1,1,1,"bla");
+            b.AddToCollection(be);
         }
 
 
