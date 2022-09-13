@@ -30,24 +30,34 @@ namespace Vodicka_Junior
             DataContext = b;
             //con.DataBaseConnection();
 
+            int Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount;
+            string note;
+
             SqlConnection SQLconnection;
             string connectionString = Properties.Settings.Default.student4ConnectionString;
             SQLconnection = new SqlConnection(connectionString);
             SQLconnection.Open();
             SqlCommand command;
-            SqlDataReader dataReader;
+            SqlDataReader datareader;
             String sql, Output = "";
-            sql = "Select Id, idBuilding from BuildingState";
+            sql = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
 
             command = new SqlCommand(sql, SQLconnection);
-            dataReader = command.ExecuteReader();
-            while (dataReader.Read())
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
             {
-                Output += dataReader.GetValue(0) + " - " + dataReader.GetValue(1);
+                Id = int.Parse(datareader.GetValue(0).ToString());
+                IdBuilding = int.Parse(datareader.GetValue(1).ToString());
+                IdType = int.Parse(datareader.GetValue(2).ToString());
+                Stamp = int.Parse(datareader.GetValue(3).ToString());
+                Neccessityinvestment = int.Parse(datareader.GetValue(4).ToString());
+                investmentAmount = int.Parse(datareader.GetValue(5).ToString());
+                note = datareader.GetValue(6).ToString();
+                Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
+                b.AddToCollection(build);
             }
-            MessageBox.Show(Output);
-            Building be = new Building(1,1,1,1,1,1,"bla");
-            b.AddToCollection(be);
+            
+            
         }
 
 

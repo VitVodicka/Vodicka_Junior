@@ -15,10 +15,16 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding BuildingCollection}" Margin="10" Name="listview" MouseDoubleClick="listview_MouseDoubleClick">
+        <ListView Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding BuildingCollection}" HorizontalContentAlignment="Center" Margin="10" Name="listview" MouseDoubleClick="listview_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" ></GridViewColumn>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" ></GridViewColumn>
+                    <GridViewColumn Header="IdBuilding"  DisplayMemberBinding="{Binding IdBuilding}"></GridViewColumn>
+                    <GridViewColumn Header="IdType" DisplayMemberBinding="{Binding IdType}" ></GridViewColumn>
+                    <GridViewColumn Header="Stamp" DisplayMemberBinding="{Binding Stamp}" ></GridViewColumn>
+                    <GridViewColumn Header="NeccessityInvestment" DisplayMemberBinding="{Binding NeccessityInvestment}" ></GridViewColumn>
+                    <GridViewColumn Header="InvestmentAmount" DisplayMemberBinding="{Binding InvestmentAmount}" ></GridViewColumn>
+                    <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Note}" ></GridViewColumn>
                 </GridView>
             </ListView.View>
             
