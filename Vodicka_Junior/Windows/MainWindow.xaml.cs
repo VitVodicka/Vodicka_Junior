@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,29 @@ namespace Vodicka_Junior
     public partial class MainWindow : Window
     {
         Background b = new Background();
+        DatabaseConnection con = new DatabaseConnection();
         public MainWindow()
         {
             InitializeComponent();
             DataContext = b;
-            
+            //con.DataBaseConnection();
+
+            SqlConnection SQLconnection;
+            string connectionString = Properties.Settings.Default.student4ConnectionString;
+            SQLconnection = new SqlConnection(connectionString);
+            SQLconnection.Open();
+            SqlCommand command;
+            SqlDataReader dataReader;
+            String sql, Output = "";
+            sql = "Select Id, note from BuildingState";
+
+            command = new SqlCommand(sql, SQLconnection);
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Output += dataReader.GetValue(0) + " - " + dataReader.GetValue(1);
+            }
+            MessageBox.Show(Output);
         }
 
 
