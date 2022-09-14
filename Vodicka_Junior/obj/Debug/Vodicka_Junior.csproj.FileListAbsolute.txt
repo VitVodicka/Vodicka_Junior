@@ -18,3 +18,4 @@ C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Wind
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\AddWindow.baml
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\MainWindow.baml
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\UpdateWindow.baml
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\InfoWIndow.g.cs

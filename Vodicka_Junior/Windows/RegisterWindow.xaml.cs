@@ -15,20 +15,13 @@ using System.Windows.Shapes;
 namespace Vodicka_Junior.Windows
 {
     /// <summary>
-    /// Interakční logika pro LoginPage.xaml
+    /// Interakční logika pro RegisterWindow.xaml
     /// </summary>
-    public partial class LoginPage : Window
+    public partial class RegisterWindow : Window
     {
-        public LoginPage()
+        public RegisterWindow()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)

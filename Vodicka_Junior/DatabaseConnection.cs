@@ -40,6 +40,14 @@ namespace Vodicka_Junior
 
 
         }
+        public void AddingToLogin()
+        {
+
+        }
+        public void LoadingFromLogin()
+        {
+
+        }
         public void ReadingFromDatabase()
         {
             
