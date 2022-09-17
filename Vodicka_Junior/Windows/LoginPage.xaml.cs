@@ -19,6 +19,7 @@ namespace Vodicka_Junior.Windows
     /// </summary>
     public partial class LoginPage : Window
     {
+        RegisterWindow reg = new RegisterWindow();
         public LoginPage()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Vodicka_Junior.Windows
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-
+            reg.Show();
         }
     }
 }

@@ -28,34 +28,12 @@ namespace Vodicka_Junior
         {
             InitializeComponent();
             DataContext = b;
-            //con.DataBaseConnection();
+            con.DataBaseConnection();
+            con.ReadingFromDatabase(b);
+            
 
-            int Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount;
-            string note;
-
-            SqlConnection SQLconnection;
-            string connectionString = Properties.Settings.Default.student4ConnectionString;
-            SQLconnection = new SqlConnection(connectionString);
-            SQLconnection.Open();
-            SqlCommand command;
-            SqlDataReader datareader;
-            String sql;
-            sql = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
-
-            command = new SqlCommand(sql, SQLconnection);
-            datareader = command.ExecuteReader();
-            while (datareader.Read())
-            {
-                Id = int.Parse(datareader.GetValue(0).ToString());
-                IdBuilding = int.Parse(datareader.GetValue(1).ToString());
-                IdType = int.Parse(datareader.GetValue(2).ToString());
-                Stamp = int.Parse(datareader.GetValue(3).ToString());
-                Neccessityinvestment = int.Parse(datareader.GetValue(4).ToString());
-                investmentAmount = int.Parse(datareader.GetValue(5).ToString());
-                note = datareader.GetValue(6).ToString();
-                Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
-                b.AddToCollection(build);
-            }
+            
+           
 
             
             
@@ -73,32 +51,17 @@ namespace Vodicka_Junior
 
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            string sql;
-            SqlConnection SQLconnection;
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            string connectionString = Properties.Settings.Default.student4ConnectionString;
-            SQLconnection = new SqlConnection(connectionString);
-            SQLconnection.Open();
-            SqlCommand command;
-
-            b.RemoveFromCollection(listview.SelectedIndex);
-            sql = "DELETE FROM BuildingState WHERE Id=@Id ";
-
-            command = new SqlCommand(sql, SQLconnection);
-
-            
-           
-            
-            command.Parameters.AddWithValue("@Id", listview.SelectedIndex);
-            int rsomething = command.ExecuteNonQuery();
-                
-        }
-            /*adapter.DeleteCommand = new SqlCommand(sql,SQLconnection);
-            adapter.DeleteCommand.Parameters.AddWithValue("@Id", listview.SelectedIndex);
-            adapter.DeleteCommand.ExecuteNonQuery();*/
-
+            if (listview.SelectedIndex > -1)
+            {
+    
+            con.DeleteFromDatabase(b, listview.SelectedIndex);
+            }
 
         }
+            
+
+
+        
 
         private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

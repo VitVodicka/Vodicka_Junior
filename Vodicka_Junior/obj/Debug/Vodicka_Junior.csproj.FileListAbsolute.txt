@@ -19,3 +19,8 @@ C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Wind
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\MainWindow.baml
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\UpdateWindow.baml
 C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\InfoWIndow.g.cs
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\LoginPage.g.cs
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\RegisterWindow.g.cs
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\InfoWIndow.baml
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\LoginPage.baml
+C:\Users\Vít Vodička\source\repos\Vodicka_Junior\Vodicka_Junior\obj\Debug\Windows\RegisterWindow.baml

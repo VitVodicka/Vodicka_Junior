@@ -11,7 +11,7 @@ namespace Vodicka_Junior
     internal class DatabaseConnection
     {
         SqlConnection SQLconnection;
-        Background b = new Background();
+
         public void DataBaseConnection()
         {
             try
@@ -29,10 +29,26 @@ namespace Vodicka_Junior
 
             }
         }
-        public void DeleteFromDatabase()
+        public void DeleteFromDatabase(Background b,int selectedindex)
         {
-            DataBaseConnection();
+            string sql;
+            SqlConnection SQLconnection;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            string connectionString = Properties.Settings.Default.student4ConnectionString;
+            SQLconnection = new SqlConnection(connectionString);
+            SQLconnection.Open();
+            SqlCommand command;
 
+            b.RemoveFromCollection(selectedindex);
+            sql = "DELETE FROM BuildingState WHERE Id=@Id ";
+
+            command = new SqlCommand(sql, SQLconnection);
+
+
+
+
+            command.Parameters.AddWithValue("@Id", selectedindex);
+            int something = command.ExecuteNonQuery();
         }
         public void AddingToDatabase()
         {
@@ -48,47 +64,30 @@ namespace Vodicka_Junior
         {
 
         }
-        public void ReadingFromDatabase()
+        public void ReadingFromDatabase(Background b)
         {
-            
             int Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount;
             string note;
-            DataBaseConnection();
-            /*try
+
+            SqlCommand command;
+            SqlDataReader datareader;
+            String sql;
+            sql = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
+
+            command = new SqlCommand(sql, SQLconnection);
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
             {
-                SqlDataReader datareader;
-               
-                SqlCommand sq = new SqlCommand();
-                sq.Connection = SQLconnection;
-                sq.CommandText = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
-                datareader = sq.ExecuteReader();
-
-                if (datareader.HasRows)
-                {
-                    while (datareader.Read())
-                    {
-                        Id = datareader.GetInt16(0);
-                        IdBuilding = datareader.GetInt16(1);
-                        IdType = datareader.GetInt16(2);
-                        Stamp = datareader.GetInt16(3);
-                        Neccessityinvestment = datareader.GetInt16(4);
-                        investmentAmount = datareader.GetInt16(5);
-                        note = datareader.GetString(6);
-                        Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
-                        b.AddToCollection(build);
-                    }
-                    
-                }
-                else
-                {
-
-                }
-                datareader.Close();
+                Id = int.Parse(datareader.GetValue(0).ToString());
+                IdBuilding = int.Parse(datareader.GetValue(1).ToString());
+                IdType = int.Parse(datareader.GetValue(2).ToString());
+                Stamp = int.Parse(datareader.GetValue(3).ToString());
+                Neccessityinvestment = int.Parse(datareader.GetValue(4).ToString());
+                investmentAmount = int.Parse(datareader.GetValue(5).ToString());
+                note = datareader.GetValue(6).ToString();
+                Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
+                b.AddToCollection(build);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }*/
 
         }
     }
