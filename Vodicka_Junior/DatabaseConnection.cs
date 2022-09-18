@@ -55,7 +55,8 @@ namespace Vodicka_Junior
         public void AddingToLogin(string username, string password)
         {
             DataBaseConnection();
-            if(username != null || password != null)
+            if(LoadingFromLogin(username, password)!=true)
+                
             {
                 sql = "INSERT INTO [User](Username, Password) VALUES (@Username,@Password)";
                 command = new SqlCommand(sql, SQLconnection);
@@ -67,6 +68,7 @@ namespace Vodicka_Junior
                 command.Dispose();
 
             }
+            
             
             
             SQLconnection.Close();

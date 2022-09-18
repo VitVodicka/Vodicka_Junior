@@ -29,8 +29,8 @@ namespace Vodicka_Junior.Windows
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             try {
-                if ((username.Text.ToString()!=null) && (password.Text.ToString()!=null)){
-                    conn.AddingToLogin(username.Text.ToString(), password.Text.ToString());
+                if ((username.Text.ToString()!=null) && (password.Password.ToString()!=null)){
+                    conn.AddingToLogin(username.Text.ToString(), password.Password.ToString());
                     MessageBox.Show("User has been added successfully");
                     this.Close();
                 }

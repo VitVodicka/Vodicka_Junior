@@ -34,20 +34,26 @@ namespace Vodicka_Junior.Windows
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            try { 
-            
-            if (conn.LoadingFromLogin(username.Text.ToString(), password.Text.ToString()) == true)
-            {
-                new MainWindow().Show();
-                    MessageBox.Show("Successful login");
-                    this.Close();
-            }
+            try {
+
+                if (username.Text.ToString() != null && (password.Password.ToString() != null)) { 
+                    if (conn.LoadingFromLogin(username.Text.ToString(), password.Password.ToString()) == true)
+                        {
+                            new MainWindow().Show();
+                            MessageBox.Show("Successful login");
+                            this.Close();
+                        }
+                    else
+                        {
+                            MessageBox.Show("Unsuccessful login");
+                        }
+                }
                 else
                 {
-                    MessageBox.Show("Unsuccessful login");
+                    MessageBox.Show("Boxes must be filled");
                 }
             }
-            catch(Exception m)
+            catch (Exception m)
             {
                 MessageBox.Show(m.Message);
             }
