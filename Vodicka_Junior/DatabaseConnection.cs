@@ -14,7 +14,6 @@ namespace Vodicka_Junior
         SqlCommand command;
         SqlDataReader datareader;
         string sql;
-        SqlDataAdapter adapter = new SqlDataAdapter();
         Background b = new Background();
 
         public void DataBaseConnection()
