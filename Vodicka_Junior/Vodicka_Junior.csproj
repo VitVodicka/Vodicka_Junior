@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Structures\Background.cs" />
+    <Compile Include="Structures\Collection.cs" />
     <Compile Include="Structures\Building.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Structures\User.cs" />

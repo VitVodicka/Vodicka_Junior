@@ -22,7 +22,7 @@ namespace Vodicka_Junior.Windows
     {
         RegisterWindow reg = new RegisterWindow();
         DatabaseConnection conn = new DatabaseConnection();
-        Background b = new Background();
+        Collection b = new Collection();
         public LoginPage()
         {
             InitializeComponent();
@@ -40,6 +40,7 @@ namespace Vodicka_Junior.Windows
             {
                 new MainWindow().Show();
                     MessageBox.Show("Successful login");
+                    this.Close();
             }
                 else
                 {

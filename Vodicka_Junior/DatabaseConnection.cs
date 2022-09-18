@@ -14,7 +14,7 @@ namespace Vodicka_Junior
         SqlCommand command;
         SqlDataReader datareader;
         string sql;
-        Background b = new Background();
+        Collection b = new Collection();
 
         public void DataBaseConnection()
         {
@@ -33,7 +33,7 @@ namespace Vodicka_Junior
 
             }
         }
-        public void DeleteFromDatabase(Background b,int selectedindex)
+        public void DeleteFromDatabase(Collection b,int selectedindex)
         {
             DataBaseConnection();
                       
@@ -99,7 +99,7 @@ namespace Vodicka_Junior
             }
         }
         
-        public void ReadingFromDatabase(Background b)
+        public void ReadingFromDatabase(Collection b)
         {
             DataBaseConnection();
             int Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount;
@@ -125,6 +125,23 @@ namespace Vodicka_Junior
             datareader.Close();
             SQLconnection.Close();
 
+        }
+        public void ElementsReading()
+        {
+            DataBaseConnection();
+            string Name;
+            sql = "SELECT Name FROM BuildingElements";
+
+            command = new SqlCommand(sql, SQLconnection);
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
+            {
+                Name = datareader.GetValue(0).ToString();
+                b.AddingElementsToList(Name);
+            }
+            datareader.Close();
+            SQLconnection.Close();
+            
         }
     }
 }

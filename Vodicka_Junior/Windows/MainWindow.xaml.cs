@@ -22,7 +22,7 @@ namespace Vodicka_Junior
     /// </summary>
     public partial class MainWindow : Window
     {
-        Background b = new Background();
+        Collection b = new Collection();
         DatabaseConnection con = new DatabaseConnection();
         public MainWindow()
         {
@@ -30,14 +30,15 @@ namespace Vodicka_Junior
             DataContext = b;
             
             con.ReadingFromDatabase(b);
-            
+            con.ElementsReading();
 
-            
-           
 
-            
-            
-            
+
+
+
+
+
+
 
 
         }
