@@ -28,7 +28,7 @@ namespace Vodicka_Junior
         {
             InitializeComponent();
             DataContext = b;
-            con.DataBaseConnection();
+            
             con.ReadingFromDatabase(b);
             
 

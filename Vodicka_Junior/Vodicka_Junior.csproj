@@ -58,6 +58,7 @@
     <Compile Include="Structures\Background.cs" />
     <Compile Include="Structures\Building.cs" />
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="Structures\User.cs" />
     <Compile Include="student4DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
