@@ -40,7 +40,7 @@ namespace Vodicka_Junior
                 value = true;
             }
         }
-
+        
         private void Save_Click(object sender, RoutedEventArgs e)
         {
 

@@ -47,7 +47,7 @@ namespace Vodicka_Junior
             command.Dispose();
             SQLconnection.Close();
         }
-        public void UpdateDateTime(DateTime? date)
+        public void UpdateDateTime(string date)
         {
             DataBaseConnection();
             sql = "UPDATE Building SET FirstApproval=@FirstApproval WHERE Id=@Id";
@@ -155,6 +155,26 @@ namespace Vodicka_Junior
             }
             datareader.Close();
             SQLconnection.Close();
+
+        }
+        //public void UpdateSearching(string dateTime)
+        public void UpdateSearching(int dateTime)
+        {
+            DataBaseConnection();
+            int index=0;
+            sql = "SELECT Id FROM Building WHERE FirstApproval=@FirstApproval";
+            command = new SqlCommand(sql, SQLconnection);
+            command.Parameters.AddWithValue("@FirstApproval",dateTime);
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
+            {
+                index =int.Parse(datareader.GetValue(0).ToString());
+            }
+
+            UpdateIndex = index;
+            datareader.Close();
+            SQLconnection.Close();
+
 
         }
         public void ElementsReading(Collection collection)

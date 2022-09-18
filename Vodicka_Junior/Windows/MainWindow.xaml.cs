@@ -43,7 +43,9 @@ namespace Vodicka_Junior
             if (listview.SelectedIndex > -1)
             {
                 new AddWindow().Show();
-                con.UpdateIndex = listview.SelectedIndex;
+                
+                
+                
             }
         }
 
@@ -63,7 +65,10 @@ namespace Vodicka_Junior
 
         private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (listview.SelectedIndex > -1) { 
             new UpdateWindow().Show();
+            con.UpdateSearching(b.BuildingCollection[listview.SelectedIndex].IdBuilding);
+            }
         }
     }
 }

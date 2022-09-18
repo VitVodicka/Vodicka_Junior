@@ -23,11 +23,12 @@ namespace Vodicka_Junior
         public UpdateWindow()
         {
             InitializeComponent();
+
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            conn.UpdateDateTime(date.SelectedDate);
+            conn.UpdateDateTime(date.SelectedDate.Value.ToShortDateString().ToString()); 
         }
     }
 }
