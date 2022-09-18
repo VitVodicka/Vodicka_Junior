@@ -15,6 +15,7 @@ namespace Vodicka_Junior
         SqlDataReader datareader;
         string sql;
         Collection b = new Collection();
+        public int UpdateIndex { get; set; }
 
         public void DataBaseConnection()
         {
@@ -24,7 +25,7 @@ namespace Vodicka_Junior
                 string connectionString = Properties.Settings.Default.student4ConnectionString;
                 SQLconnection = new SqlConnection(connectionString);
                 SQLconnection.Open();
-                
+
 
 
             }
@@ -33,10 +34,10 @@ namespace Vodicka_Junior
 
             }
         }
-        public void DeleteFromDatabase(Collection b,int selectedindex)
+        public void DeleteFromDatabase(Collection b, int selectedindex)
         {
             DataBaseConnection();
-                      
+
             b.RemoveFromCollection(selectedindex);
             sql = "DELETE FROM BuildingState WHERE Id=@Id ";
 
@@ -46,13 +47,41 @@ namespace Vodicka_Junior
             command.Dispose();
             SQLconnection.Close();
         }
-        public void AddingToDatabase()
+        public void UpdateDateTime(DateTime? date)
+        {
+            DataBaseConnection();
+            sql = "UPDATE Building SET FirstApproval=@FirstApproval WHERE Id=@Id";
+            command = new SqlCommand(sql, SQLconnection);
+            command.Parameters.AddWithValue("@Id", UpdateIndex);
+            command.Parameters.AddWithValue("@FirstApproval", date);
+            int something = command.ExecuteNonQuery();
+            command.Dispose();
+            SQLconnection.Dispose();
+        }
+
+        public void AddingToDatabase(int idBuilding, int idType, int stamp, int neccesityInvestment, int investmentAmount, string note)
         {
             DataBaseConnection();
 
+            sql = "INSERT INTO BuildingState (idBuilding,idType,stamp,NecessityInvestment,investmentAmount,note) VALUES (@idBuilding,@idType,@stamp,@NecessityInvestment,@investmentAmount,@idType,@note)";
+            command = new SqlCommand(sql, SQLconnection);
+
+            command.Parameters.AddWithValue("@idBuilding", idBuilding);
+            command.Parameters.AddWithValue("@idType", idType);
+            command.Parameters.AddWithValue("@stamp", stamp);
+            command.Parameters.AddWithValue("@NecessityInvestment", neccesityInvestment);
+            command.Parameters.AddWithValue("@investmentAmount", investmentAmount);
+            command.Parameters.AddWithValue("@note", note);
+            int something = command.ExecuteNonQuery();
+
+            command.Dispose();
 
         }
-        public void AddingToLogin(string username, string password)
+    
+
+    
+
+    public void AddingToLogin(string username, string password)
         {
             DataBaseConnection();
             if(LoadingFromLogin(username, password)!=true)
@@ -128,7 +157,7 @@ namespace Vodicka_Junior
             SQLconnection.Close();
 
         }
-        public void ElementsReading()
+        public void ElementsReading(Collection collection)
         {
             DataBaseConnection();
             string Name;
@@ -139,11 +168,13 @@ namespace Vodicka_Junior
             while (datareader.Read())
             {
                 Name = datareader.GetValue(0).ToString();
-                b.AddingElementsToList(Name);
+                Element e = new Element(Name);
+                collection.AddingElementsToList(e);
             }
             datareader.Close();
             SQLconnection.Close();
             
         }
     }
+    
 }

@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vodicka_Junior"
         mc:Ignorable="d"
-        Title="UpdateWindow" Height="450" Width="800">
+        Title="UpdateWindow" Height="350" Width="600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Update to:" FontSize="25" HorizontalAlignment="Center" Grid.ColumnSpan="2" VerticalAlignment="Center"></TextBlock>
+        <DatePicker HorizontalAlignment="Center"  Width="150" VerticalAlignment="Center" Name="date" Grid.Row="1" Grid.ColumnSpan="2"></DatePicker>
+        <Button Grid.Row="2" Content="Change" Width="200" Height="60" Click="Update_Click"></Button>
     </Grid>
 </Window>

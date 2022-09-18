@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Vodicka_Junior.Structures;
 
 namespace Vodicka_Junior
 {
@@ -20,9 +22,14 @@ namespace Vodicka_Junior
     public partial class AddWindow : Window
     {
         bool value=false;
+        DatabaseConnection con = new DatabaseConnection();
+        Collection collection = new Collection();
+
         public AddWindow()
         {
             InitializeComponent();
+            DataContext = collection;
+            con.ElementsReading(collection);
         }
 
         public void SpaceChecker(string text)
@@ -37,12 +44,27 @@ namespace Vodicka_Junior
         private void Save_Click(object sender, RoutedEventArgs e)
         {
 
-            SpaceChecker(date.Text);
-            SpaceChecker(type.Text);
+            //datetime maybe changing
+
+            SpaceChecker(note.Text);
+
             SpaceChecker(PropertyType.Text);
             SpaceChecker(investmentNeed.Text);
             SpaceChecker(investmentEstimate.Text);
-            SpaceChecker(note.Text);
+
+            bool PropertyTypeToInt = int.TryParse(PropertyType.Text, out int intPropertyType);
+            bool investementNeedToInt = int.TryParse(investmentNeed.Text, out int intInvestmentNeed);
+            bool investmentEstimateToInt = int.TryParse(investmentEstimate.Text, out int intInvestmentEstimate);
+
+            
+            if ((PropertyTypeToInt == true) && (investementNeedToInt == true)&&(investmentEstimateToInt==true))
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Property type, investment need, investment estimate field must be a number not a text");
+            }
         }
     }
 }

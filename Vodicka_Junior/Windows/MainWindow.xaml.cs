@@ -24,22 +24,14 @@ namespace Vodicka_Junior
     {
         Collection b = new Collection();
         DatabaseConnection con = new DatabaseConnection();
+        
         public MainWindow()
         {
             InitializeComponent();
             DataContext = b;
             
             con.ReadingFromDatabase(b);
-            con.ElementsReading();
-
-
-
-
-
-
-
-
-
+            
 
         }
 
@@ -47,7 +39,12 @@ namespace Vodicka_Junior
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            new AddWindow().Show();
+            
+            if (listview.SelectedIndex > -1)
+            {
+                new AddWindow().Show();
+                con.UpdateIndex = listview.SelectedIndex;
+            }
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)

@@ -19,9 +19,15 @@ namespace Vodicka_Junior
     /// </summary>
     public partial class UpdateWindow : Window
     {
+        DatabaseConnection conn = new DatabaseConnection();
         public UpdateWindow()
         {
             InitializeComponent();
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            conn.UpdateDateTime(date.SelectedDate);
         }
     }
 }

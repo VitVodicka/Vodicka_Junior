@@ -10,14 +10,15 @@ namespace Vodicka_Junior.Structures
 {
     internal class Collection : INotifyPropertyChanged
     {
+        
         public ObservableCollection<Building> BuildingCollection { get; set; }
         public List<User> UserLogin { get; set; }
-        public ObservableCollection<string> ElementsCollection { get; set; }
+        public ObservableCollection<Element> ElementsCollection { get; set; }
         public Collection()
         {
             BuildingCollection = new ObservableCollection<Building>();
             UserLogin = new List<User>();   
-            ElementsCollection = new ObservableCollection<string>();
+            ElementsCollection = new ObservableCollection<Element>();
         }
         public void Change(string property)
         {
@@ -55,9 +56,9 @@ namespace Vodicka_Junior.Structures
             }
             return resault;
         }
-        public void AddingElementsToList(string element)
+        public void AddingElementsToList(Element e)
         {
-            ElementsCollection.Add(element);
+            ElementsCollection.Add(e);
             Change("ElementsCollection");
         }
 
