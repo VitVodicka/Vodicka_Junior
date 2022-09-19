@@ -52,6 +52,7 @@ namespace Vodicka_Junior
             SpaceChecker(investmentNeed.Text);
             SpaceChecker(investmentEstimate.Text);
 
+
             bool PropertyTypeToInt = int.TryParse(PropertyType.Text, out int intPropertyType);
             bool investementNeedToInt = int.TryParse(investmentNeed.Text, out int intInvestmentNeed);
             bool investmentEstimateToInt = int.TryParse(investmentEstimate.Text, out int intInvestmentEstimate);
@@ -59,7 +60,7 @@ namespace Vodicka_Junior
             
             if ((PropertyTypeToInt == true) && (investementNeedToInt == true)&&(investmentEstimateToInt==true))
             {
-                
+                con.AddingToDatabase(date.SelectedDate.Value.ToShortDateString().ToString(),intPropertyType,combo.SelectedIndex, );
             }
             else
             {

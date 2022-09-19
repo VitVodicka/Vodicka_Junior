@@ -30,7 +30,7 @@ namespace Vodicka_Junior
         {
             try
             {
-                conn.UpdateDateTime(date.SelectedDate.Value.ToShortDateString().ToString());
+                conn.UpdateDateTime(date.SelectedDate.Value.ToShortDateString().ToString(), );
                 MessageBox.Show("Date updated successfully");
             }
             catch(Exception ex)
