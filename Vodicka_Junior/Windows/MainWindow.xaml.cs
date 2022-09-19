@@ -40,13 +40,12 @@ namespace Vodicka_Junior
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             
-            if (listview.SelectedIndex > -1)
-            {
+            
                 new AddWindow().Show();
                 
                 
                 
-            }
+            
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)

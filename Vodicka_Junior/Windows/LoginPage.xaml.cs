@@ -26,7 +26,13 @@ namespace Vodicka_Junior.Windows
         public LoginPage()
         {
             InitializeComponent();
+            try { 
             conn.DataBaseConnection();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Databse not connected");
+            }
 
         }
 

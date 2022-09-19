@@ -61,13 +61,28 @@ namespace Vodicka_Junior
 
         public void AddingToDatabase(string approval, int idType, int stamp, int neccesityInvestment, int investmentAmount, string note)
         {
+            int idBuilding=0;
             DataBaseConnection();
             sql = "INSERT INTO Building (FirstApproval) VALUES (@FirstApproval)";
             command = new SqlCommand(sql, SQLconnection);
             command.Parameters.AddWithValue("@FirstApproval", approval);
+            int something2 = command.ExecuteNonQuery();
+            command.Dispose();
+
+            sql = "SELECT Id FROM Building WHERE FirstApproval=@FirstApproval";
+            command = new SqlCommand(sql, SQLconnection);
+            command.Parameters.AddWithValue("@FirstApproval", approval);
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
+            {
+                idBuilding = int.Parse(datareader.GetValue(0).ToString());
+            }
+            command.Dispose();
+
             //needs to place it into database and figure out the index in database
             sql = "INSERT INTO BuildingState (idBuilding,idType,stamp,NecessityInvestment,investmentAmount,note) VALUES (@idBuilding,@idType,@stamp,@NecessityInvestment,@investmentAmount,@idType,@note)";
             command = new SqlCommand(sql, SQLconnection);
+
 
             command.Parameters.AddWithValue("@idBuilding", idBuilding);
             command.Parameters.AddWithValue("@idType", idType);
