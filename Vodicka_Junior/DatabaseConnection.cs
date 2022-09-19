@@ -59,10 +59,13 @@ namespace Vodicka_Junior
             SQLconnection.Dispose();
         }
 
-        public void AddingToDatabase(int idBuilding, int idType, int stamp, int neccesityInvestment, int investmentAmount, string note)
+        public void AddingToDatabase(string approval, int idType, int stamp, int neccesityInvestment, int investmentAmount, string note)
         {
             DataBaseConnection();
-
+            sql = "INSERT INTO Building (FirstApproval) VALUES (@FirstApproval)";
+            command = new SqlCommand(sql, SQLconnection);
+            command.Parameters.AddWithValue("@FirstApproval", approval);
+            //needs to place it into database and figure out the index in database
             sql = "INSERT INTO BuildingState (idBuilding,idType,stamp,NecessityInvestment,investmentAmount,note) VALUES (@idBuilding,@idType,@stamp,@NecessityInvestment,@investmentAmount,@idType,@note)";
             command = new SqlCommand(sql, SQLconnection);
 
@@ -158,7 +161,7 @@ namespace Vodicka_Junior
 
         }
         //public void UpdateSearching(string dateTime)
-        public void UpdateSearching(int dateTime)
+        /*public void UpdateSearching(int dateTime)
         {
             DataBaseConnection();
             int index=0;
@@ -176,7 +179,7 @@ namespace Vodicka_Junior
             SQLconnection.Close();
 
 
-        }
+        }*/
         public void ElementsReading(Collection collection)
         {
             DataBaseConnection();

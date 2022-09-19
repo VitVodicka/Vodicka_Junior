@@ -67,7 +67,8 @@ namespace Vodicka_Junior
         {
             if (listview.SelectedIndex > -1) { 
             new UpdateWindow().Show();
-            con.UpdateSearching(b.BuildingCollection[listview.SelectedIndex].IdBuilding);
+                con.UpdateIndex=b.BuildingCollection[listview.SelectedIndex].IdBuilding;
+                //con.UpdateSearching(b.BuildingCollection[listview.SelectedIndex].IdBuilding);
             }
         }
     }

@@ -28,7 +28,16 @@ namespace Vodicka_Junior
 
         private void Update_Click(object sender, RoutedEventArgs e)
         {
-            conn.UpdateDateTime(date.SelectedDate.Value.ToShortDateString().ToString()); 
+            try
+            {
+                conn.UpdateDateTime(date.SelectedDate.Value.ToShortDateString().ToString());
+                MessageBox.Show("Date updated successfully");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }
