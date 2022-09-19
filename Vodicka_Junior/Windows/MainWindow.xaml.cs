@@ -24,14 +24,21 @@ namespace Vodicka_Junior
     {
         Collection b = new Collection();
         DatabaseConnection con = new DatabaseConnection();
-        
         public MainWindow()
         {
             InitializeComponent();
             DataContext = b;
             
-            con.ReadingFromDatabase(b);
-            
+            con.ReadingFromDatabase(b);//reads data from database BuildingState
+            con.SverenyBudovyLoading(b, 60680318);//loads data from SeverenyBudovy view
+
+
+
+
+
+
+
+
 
         }
 
@@ -39,13 +46,7 @@ namespace Vodicka_Junior
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-                new AddWindow().Show();
-                
-                
-                
-            
+            new AddWindow().Show();
         }
 
         private void Remove_Click(object sender, RoutedEventArgs e)
@@ -53,22 +54,9 @@ namespace Vodicka_Junior
             if (listview.SelectedIndex > -1)
             {
     
-            con.DeleteFromDatabase(b, listview.SelectedIndex);
+            con.DeleteFromDatabase(b, listview.SelectedIndex);//if user selected something than it deletes from database
             }
 
-        }
-            
-
-
-        
-
-        private void listview_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (listview.SelectedIndex > -1) { 
-            new UpdateWindow().Show();
-                con.UpdateIndex=b.BuildingCollection[listview.SelectedIndex].IdBuilding;
-                //con.UpdateSearching(b.BuildingCollection[listview.SelectedIndex].IdBuilding);
-            }
         }
     }
 }

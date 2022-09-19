@@ -10,29 +10,38 @@ namespace Vodicka_Junior.Structures
 {
     internal class Collection : INotifyPropertyChanged
     {
-        
-        public ObservableCollection<Building> BuildingCollection { get; set; }
-        public List<User> UserLogin { get; set; }
-        public ObservableCollection<Element> ElementsCollection { get; set; }
+        public ObservableCollection<Building> BuildingCollection { get; set; }//Buildingcollection observablecollection (BuildingElements table)
+        public List<User> UserLogin { get; set; }//list with users
+        public ObservableCollection<SvereneBudovy> SvereneBudovyCollection { get; set; }// observablecollection from severeneBudovy view (BuildingElements table)
+        public ObservableCollection<Element> ElementsCollection { get; set; }//elements of building observablecollection of
         public Collection()
         {
-            BuildingCollection = new ObservableCollection<Building>();
-            UserLogin = new List<User>();   
-            ElementsCollection = new ObservableCollection<Element>();
+            BuildingCollection = new ObservableCollection<Building>();//declaring lists/observablecollections
+            UserLogin = new List<User>();
+            SvereneBudovyCollection = new ObservableCollection<SvereneBudovy>();
+            ElementsCollection = new ObservableCollection<Element>(); 
+
         }
-        public void Change(string property)
+        public void Change(string property)//providing changes to observablecollections
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
-        public void AddToCollection(Building b)
+        public void AddToCollection(Building b)//adds to Buildingcollection(BuildingElements table)
         {
             BuildingCollection.Add(b);
-            Change("BuildingCollection");
+            Change("BuildingCollection");//updates changes
         }
-        public void RemoveFromCollection(int index)
+        public void AddingElementsToList(Element e)
+        {
+            ElementsCollection.Add(e);
+            Change("ElementsCollection");
+        }
+
+
+        public void RemoveFromCollection(int index)//removes from BuildingCollection
         {
             if (index >-1 ) { 
             BuildingCollection.RemoveAt(index);
@@ -44,7 +53,13 @@ namespace Vodicka_Junior.Structures
         {
             UserLogin.Add(u);
         }
-        public bool ListLoading(string username, string password)
+        public void AddingToSvereneBudovy(SvereneBudovy s)
+        {
+            SvereneBudovyCollection.Add(s);
+            Change("SvereneBudovyCollection");
+        }
+
+        public bool ListLoading(string username, string password)//checks if entered login is in list
         {
             bool resault = false;
             foreach (User us in UserLogin)
@@ -55,11 +70,6 @@ namespace Vodicka_Junior.Structures
                 }
             }
             return resault;
-        }
-        public void AddingElementsToList(Element e)
-        {
-            ElementsCollection.Add(e);
-            Change("ElementsCollection");
         }
 
 

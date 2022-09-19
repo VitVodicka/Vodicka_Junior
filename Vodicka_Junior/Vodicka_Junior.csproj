@@ -59,14 +59,12 @@
     <Compile Include="Structures\Building.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Structures\Element.cs" />
+    <Compile Include="Structures\SvereneBudovy.cs" />
     <Compile Include="Structures\User.cs" />
     <Compile Include="student4DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>student4DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\InfoWIndow.xaml.cs">
-      <DependentUpon>InfoWIndow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -74,14 +72,7 @@
     <Compile Include="Windows\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UpdateWindow.xaml.cs">
-      <DependentUpon>UpdateWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="Windows\AddWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\InfoWIndow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,10 +96,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\RegisterWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

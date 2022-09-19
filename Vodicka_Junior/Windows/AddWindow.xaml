@@ -38,8 +38,8 @@
             <ComboBox Name="combo" HorizontalAlignment="Center" Width="150" ItemsSource="{Binding ElementsCollection}" DisplayMemberPath="Name"  ></ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
-            <TextBlock Text="Property type" Style="{StaticResource textblock}"></TextBlock>
-            <TextBox Style="{StaticResource textbox}" Name="PropertyType"></TextBox>
+            <TextBlock Text="Property condition" Style="{StaticResource textblock}"></TextBlock>
+            <TextBox Style="{StaticResource textbox}" Name="PropertyCondition"></TextBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center">
             <TextBlock Text="Neccesity of investment" Style="{StaticResource textblock}"></TextBlock>
@@ -56,3 +56,4 @@
         <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="50" Content="SAVE" Click="Save_Click"></Button>
     </Grid>
 </Window>
+

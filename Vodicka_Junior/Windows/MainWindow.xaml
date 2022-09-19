@@ -16,11 +16,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.3*"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding BuildingCollection}" HorizontalContentAlignment="Center" Margin="10" Name="listview" MouseDoubleClick="listview_MouseDoubleClick">
+        <ListView Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding BuildingCollection}" HorizontalContentAlignment="Center" Margin="10" Name="listview" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" ></GridViewColumn>
-                    <GridViewColumn Header="IdBuilding"  DisplayMemberBinding="{Binding IdBuilding}"></GridViewColumn>
+                    <GridViewColumn Header="Date"  DisplayMemberBinding="{Binding Date}"></GridViewColumn>
                     <GridViewColumn Header="IdType" DisplayMemberBinding="{Binding IdType}" ></GridViewColumn>
                     <GridViewColumn Header="Stamp" DisplayMemberBinding="{Binding Stamp}" ></GridViewColumn>
                     <GridViewColumn Header="NeccessityInvestment" DisplayMemberBinding="{Binding NeccessityInvestment}" ></GridViewColumn>
@@ -28,18 +28,20 @@
                     <GridViewColumn Header="Note" DisplayMemberBinding="{Binding Note}" ></GridViewColumn>
                 </GridView>
             </ListView.View>
-            
+
         </ListView>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock HorizontalAlignment="Center" Text="Table vith View source"></TextBlock>
-        <ListView  HorizontalContentAlignment="Center" Margin="10" Height="177"   >
-            <ListView.View>
-                <GridView>
-                        <GridViewColumn Header="something"></GridViewColumn>
-                </GridView>
-            </ListView.View>
+            <ListView  HorizontalContentAlignment="Center" Margin="10" Height="177" ItemsSource="{Binding SvereneBudovyCollection}"  >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                        <GridViewColumn Header="Obec" DisplayMemberBinding="{Binding Obec}"></GridViewColumn>
+                        <GridViewColumn Header="Typ budovy" DisplayMemberBinding="{Binding TypBudovy}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
 
-        </ListView>
+            </ListView>
         </StackPanel>
         <Button Grid.Column="0" Width="150" Height="60" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="ADD" FontSize="30" Click="Add_Click"></Button>
         <Button Grid.Column="1" Width="150" Height="60" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="REMOVE" FontSize="30" Click="Remove_Click"></Button>

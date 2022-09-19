@@ -28,14 +28,6 @@
                 <Setter Property="Height" Value="50"></Setter>
                 
             </Style>
-            <Style TargetType="PasswordBox" x:Key="passwordbox">
-                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                <Setter Property="VerticalAlignment" Value="Center"></Setter>
-                <Setter Property="FontSize" Value="15"></Setter>
-                <Setter Property="Width" Value="200" ></Setter>
-                <Setter Property="Height" Value="50" ></Setter>
-
-            </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -49,7 +41,7 @@
         <TextBlock Text="Username" Style="{StaticResource textblock}" ></TextBlock>
         <TextBlock Text="Password" Style="{StaticResource textblock}"   Grid.Column="0" Grid.Row="1" ></TextBlock>
         <TextBox Grid.Column="1" Name="username"  Grid.Row="0"  Style="{StaticResource textbox}"></TextBox>
-        <PasswordBox Grid.Column="1" Name="password" Style="{StaticResource passwordbox}" Grid.Row="1" ></PasswordBox>
+        <TextBox Grid.Column="1" Name="password" Style="{StaticResource textbox}" Grid.Row="1" ></TextBox>
         <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource button}"  Content="LogIn" Click="Login_Click" ></Button>
         <Button Grid.Row="2" Content="Register" Style="{StaticResource button}" Click="Register_Click"></Button>
     </Grid>

@@ -22,44 +22,38 @@ namespace Vodicka_Junior.Windows
     {
         RegisterWindow reg = new RegisterWindow();
         DatabaseConnection conn = new DatabaseConnection();
-        Collection b = new Collection();
+        Collection b = new Collection();//declaring classes
         public LoginPage()
         {
             InitializeComponent();
             try { 
-            conn.DataBaseConnection();
+            conn.DataBaseConnection();//connection to database
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                MessageBox.Show("Databse not connected");
+                MessageBox.Show(e.Message);
             }
 
         }
 
         
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)//loggining into app
         {
-            try {
-
-                if (username.Text.ToString() != null && (password.Password.ToString() != null)) { 
-                    if (conn.LoadingFromLogin(username.Text.ToString(), password.Password.ToString()) == true)
-                        {
-                            new MainWindow().Show();
-                            MessageBox.Show("Successful login");
-                            this.Close();
-                        }
-                    else
-                        {
-                            MessageBox.Show("Unsuccessful login");
-                        }
-                }
+            try { 
+            
+            if (conn.LoadingFromLogin(username.Text.ToString(), password.Text.ToString()) == true)
+            {
+                new MainWindow().Show();
+                    MessageBox.Show("Successful login");
+                    this.Close();
+            }
                 else
                 {
-                    MessageBox.Show("Boxes must be filled");
+                    MessageBox.Show("Unsuccessful login");
                 }
             }
-            catch (Exception m)
+            catch(Exception m)
             {
                 MessageBox.Show(m.Message);
             }
@@ -67,7 +61,7 @@ namespace Vodicka_Junior.Windows
 
         }
 
-        private void Register_Click(object sender, RoutedEventArgs e)
+        private void Register_Click(object sender, RoutedEventArgs e)//registering new user
         {
             reg.Show();
         }

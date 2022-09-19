@@ -10,105 +10,110 @@ namespace Vodicka_Junior
 {
     internal class DatabaseConnection
     {
-        SqlConnection SQLconnection;
+        SqlConnection SQLconnection;//declaring classes SQLconnection,SQLCommand and SQL Datareader and Collection
         SqlCommand command;
         SqlDataReader datareader;
         string sql;
         Collection b = new Collection();
-        public int UpdateIndex { get; set; }
 
-        public void DataBaseConnection()
+        public void DataBaseConnection()//Connecting to databse
         {
             try
             {
 
-                string connectionString = Properties.Settings.Default.student4ConnectionString;
-                SQLconnection = new SqlConnection(connectionString);
+                string connectionString = Properties.Settings.Default.student4ConnectionString;//getting connectionstring
+                SQLconnection = new SqlConnection(connectionString);//declaring new class SQL connection
                 SQLconnection.Open();
-
+                
 
 
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
         }
-        public void DeleteFromDatabase(Collection b, int selectedindex)
+        public void ElementsReading(Collection collection)//Reading elements from table BuildingElements and pasting it into combox int addwindow 
         {
+            try { 
+            DataBaseConnection();//connecting to the database using class
+            string Name;
+            sql = "SELECT Name FROM BuildingElements";//sql command
+
+            command = new SqlCommand(sql, SQLconnection);
+            datareader = command.ExecuteReader();
+            while (datareader.Read())//reads throught BuildingElements table and returns lisst of elements 
+            {
+                Name = datareader.GetValue(0).ToString();
+                Element e = new Element(Name);//creates new elements
+                collection.AddingElementsToList(e);//adds elements to elementsList
+            }
+            datareader.Close();
+            SQLconnection.Close();//closes datareader and SQlconnection
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        public void DeleteFromDatabase(Collection b,int selectedindex)//deltes record from database
+        {
+            try { //bad index
             DataBaseConnection();
-
+                      
             b.RemoveFromCollection(selectedindex);
-            sql = "DELETE FROM BuildingState WHERE Id=@Id ";
-
+            sql = "DELETE FROM BuildingState WHERE Id=@Id ";//delte command
+            selectedindex += 1;
             command = new SqlCommand(sql, SQLconnection);
             command.Parameters.AddWithValue("@Id", selectedindex);
             int something = command.ExecuteNonQuery();
             command.Dispose();
             SQLconnection.Close();
-        }
-        public void UpdateDateTime(string date)
-        {
-            DataBaseConnection();
-            sql = "UPDATE Building SET FirstApproval=@FirstApproval WHERE Id=@Id";
-            command = new SqlCommand(sql, SQLconnection);
-            command.Parameters.AddWithValue("@Id", UpdateIndex);
-            command.Parameters.AddWithValue("@FirstApproval", date);
-            int something = command.ExecuteNonQuery();
-            command.Dispose();
-            SQLconnection.Dispose();
-        }
-
-        public void AddingToDatabase(string approval, int idType, int stamp, int neccesityInvestment, int investmentAmount, string note)
-        {
-            int idBuilding=0;
-            DataBaseConnection();
-            sql = "INSERT INTO Building (FirstApproval) VALUES (@FirstApproval)";
-            command = new SqlCommand(sql, SQLconnection);
-            command.Parameters.AddWithValue("@FirstApproval", approval);
-            int something2 = command.ExecuteNonQuery();
-            command.Dispose();
-
-            sql = "SELECT Id FROM Building WHERE FirstApproval=@FirstApproval";
-            command = new SqlCommand(sql, SQLconnection);
-            command.Parameters.AddWithValue("@FirstApproval", approval);
-            datareader = command.ExecuteReader();
-            while (datareader.Read())
-            {
-                idBuilding = int.Parse(datareader.GetValue(0).ToString());
             }
-            command.Dispose();
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public void AddingToDatabase(string date, int idType, int propertyCondition, int investmentNeed, int investmentEstimate, string note)//adds to database BuildingState
+        {
+            try { 
+            DataBaseConnection();
+                sql = "INSERT INTO [BuildingState](Date,idType,stamp,NecessityInvestment,investAmount,note) VALUES (@date,@idType,@stamp,@NecessityInvestment,@investAmount,@note )";//command which inserts into Building table datetime
+                command = new SqlCommand(sql, SQLconnection);
+                command.Parameters.AddWithValue("@date", date);
+                command.Parameters.AddWithValue("@idType", idType);
+                command.Parameters.AddWithValue("@stamp", propertyCondition);
+                command.Parameters.AddWithValue("@NecessityInvestment", investmentNeed);
+                command.Parameters.AddWithValue("@investAmount", investmentEstimate);
+                command.Parameters.AddWithValue("@note", note);
+                int something = command.ExecuteNonQuery();
 
-            //needs to place it into database and figure out the index in database
-            sql = "INSERT INTO BuildingState (idBuilding,idType,stamp,NecessityInvestment,investmentAmount,note) VALUES (@idBuilding,@idType,@stamp,@NecessityInvestment,@investmentAmount,@idType,@note)";
-            command = new SqlCommand(sql, SQLconnection);
+                command.Dispose();
+                
 
 
-            command.Parameters.AddWithValue("@idBuilding", idBuilding);
-            command.Parameters.AddWithValue("@idType", idType);
-            command.Parameters.AddWithValue("@stamp", stamp);
-            command.Parameters.AddWithValue("@NecessityInvestment", neccesityInvestment);
-            command.Parameters.AddWithValue("@investmentAmount", investmentAmount);
-            command.Parameters.AddWithValue("@note", note);
-            int something = command.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            SQLconnection.Close();
 
-            command.Dispose();
 
         }
-    
-
-    
-
-    public void AddingToLogin(string username, string password)
+        public void AddingToLogin(string username, string password)//class which registers new user
         {
+            try { 
             DataBaseConnection();
-            if(LoadingFromLogin(username, password)!=true)
-                
+            if(username != null || password != null)
             {
-                sql = "INSERT INTO [User](Username, Password) VALUES (@Username,@Password)";
+                sql = "INSERT INTO [User](Username, Password) VALUES (@Username,@Password)";//command which inserts into login table(user) username and password
                 command = new SqlCommand(sql, SQLconnection);
 
-                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Username", username);//adds value into @Username,@Password
                 command.Parameters.AddWithValue("@Password", password);
                 int something = command.ExecuteNonQuery();
 
@@ -117,10 +122,14 @@ namespace Vodicka_Junior
             }
             
             
-            
             SQLconnection.Close();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-        public bool LoadingFromLogin(string usernameFromText,string passwordFromText)
+        public bool LoadingFromLogin(string usernameFromText,string passwordFromText)//logining into app, reads data into list and if the data equals then the app continues
         {
             DataBaseConnection();
             string Username,Password;
@@ -134,11 +143,11 @@ namespace Vodicka_Junior
                 Password = datareader.GetValue(1).ToString();
                
                 User us = new User(Username,Password);
-                b.AddingToList(us);
+                b.AddingToList(us);//adds to list
             }
             datareader.Close();
             SQLconnection.Close();
-            if(b.ListLoading(usernameFromText, passwordFromText) == true)
+            if(b.ListLoading(usernameFromText, passwordFromText) == true)//checking if login user is in list
             {
                 return true;
             }
@@ -147,72 +156,57 @@ namespace Vodicka_Junior
                 return false;
             }
         }
-        
-        public void ReadingFromDatabase(Collection b)
+        public void SverenyBudovyLoading(Collection b, int s_ico)//loading from view Svereny Budovy and adds it into observablecollection
         {
             DataBaseConnection();
-            int Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount;
-            string note;
+            sql = "SELECT id,obec,typ_budovy FROM SVERENE_BUDOVY WHERE s_ico=@s_ico";
+            command = new SqlCommand(sql, SQLconnection);
+            command.Parameters.AddWithValue("@s_ico", s_ico);//reads records with similar s_ico
+            datareader = command.ExecuteReader();
+            while (datareader.Read())
+            {
+                int id = int.Parse(datareader.GetValue(0).ToString());
+                string obec = datareader.GetValue(1).ToString();
+                string typ_budovy = datareader.GetValue(2).ToString();
+                SvereneBudovy s = new SvereneBudovy(id, obec, typ_budovy);//adds it into observablecollction
+                b.AddingToSvereneBudovy(s);
+
+
+            }
+            datareader.Close();
+        }
+
+        public void ReadingFromDatabase(Collection b)//reads from database BuildingState
+        {
+            try { 
+            DataBaseConnection();
+            int Id, IdType, Stamp, Neccessityinvestment, investmentAmount;//declaring variables 
+                string note, Date;
 
             
-            sql = "SELECT Id,idBuilding, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
+            sql = "SELECT Id,Date, idType, stamp, NecessityInvestment, investmentAmount, note FROM BuildingState";
 
             command = new SqlCommand(sql, SQLconnection);
             datareader = command.ExecuteReader();
             while (datareader.Read())
             {
-                Id = int.Parse(datareader.GetValue(0).ToString());
-                IdBuilding = int.Parse(datareader.GetValue(1).ToString());
+                Id = int.Parse(datareader.GetValue(0).ToString());//inserts data into variables if it find record
+                Date = datareader.GetValue(1).ToString();
                 IdType = int.Parse(datareader.GetValue(2).ToString());
                 Stamp = int.Parse(datareader.GetValue(3).ToString());
                 Neccessityinvestment = int.Parse(datareader.GetValue(4).ToString());
                 investmentAmount = int.Parse(datareader.GetValue(5).ToString());
                 note = datareader.GetValue(6).ToString();
-                Building build = new Building(Id, IdBuilding, IdType, Stamp, Neccessityinvestment, investmentAmount, note);
+                Building build = new Building(Id, Date, IdType, Stamp, Neccessityinvestment, investmentAmount, note);//declaring new object
                 b.AddToCollection(build);
             }
             datareader.Close();
             SQLconnection.Close();
-
-        }
-        //public void UpdateSearching(string dateTime)
-        /*public void UpdateSearching(int dateTime)
-        {
-            DataBaseConnection();
-            int index=0;
-            sql = "SELECT Id FROM Building WHERE FirstApproval=@FirstApproval";
-            command = new SqlCommand(sql, SQLconnection);
-            command.Parameters.AddWithValue("@FirstApproval",dateTime);
-            datareader = command.ExecuteReader();
-            while (datareader.Read())
-            {
-                index =int.Parse(datareader.GetValue(0).ToString());
             }
-
-            UpdateIndex = index;
-            datareader.Close();
-            SQLconnection.Close();
-
-
-        }*/
-        public void ElementsReading(Collection collection)
-        {
-            DataBaseConnection();
-            string Name;
-            sql = "SELECT Name FROM BuildingElements";
-
-            command = new SqlCommand(sql, SQLconnection);
-            datareader = command.ExecuteReader();
-            while (datareader.Read())
+            catch(Exception e)
             {
-                Name = datareader.GetValue(0).ToString();
-                Element e = new Element(Name);
-                collection.AddingElementsToList(e);
+                Console.WriteLine(e.Message);
             }
-            datareader.Close();
-            SQLconnection.Close();
-            
         }
     }
-    
 }

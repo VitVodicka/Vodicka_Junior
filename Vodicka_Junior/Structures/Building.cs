@@ -10,8 +10,8 @@ namespace Vodicka_Junior
     {
         
 
-        public int Id { get; set; }
-        public int IdBuilding { get; set; }
+        public int Id { get; set; }//declaring object Building(object from databse BuildingState
+        public string Date { get; set; }
         public int IdType { get; set; }
 
         public int Stamp { get; set; }
@@ -19,10 +19,10 @@ namespace Vodicka_Junior
         public int InvestmentAmount { get; set; }
         public string Note { get; set; }
 
-        public Building(int id, int idBuilding, int idType, int stamp, int neccessityInvestment, int investmentAmount, string note)
+        public Building(int id, string date, int idType, int stamp, int neccessityInvestment, int investmentAmount, string note)
         {
             Id = id;
-            IdBuilding = idBuilding;
+            Date = date;
             IdType = idType;
             Stamp = stamp;
             NeccessityInvestment = neccessityInvestment;

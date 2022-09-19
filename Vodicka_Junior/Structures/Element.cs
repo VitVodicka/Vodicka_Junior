@@ -14,6 +14,6 @@ namespace Vodicka_Junior.Structures
         }
 
         public string Name { get; set; }
-        
+
     }
 }

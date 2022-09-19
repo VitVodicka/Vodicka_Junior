@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,16 +22,15 @@ namespace Vodicka_Junior
     {
         bool value=false;
         DatabaseConnection con = new DatabaseConnection();
-        Collection collection = new Collection();
-
+        Collection collection = new Collection();//declaring classes
         public AddWindow()
         {
             InitializeComponent();
             DataContext = collection;
-            con.ElementsReading(collection);
+            con.ElementsReading(collection);//reads elemnts from database
         }
 
-        public void SpaceChecker(string text)
+        public void SpaceChecker(string text)//checking for spaces
         {
             if((text == null) || (text == ""))
             {
@@ -40,32 +38,42 @@ namespace Vodicka_Junior
                 value = true;
             }
         }
-        
+
         private void Save_Click(object sender, RoutedEventArgs e)
         {
 
-            //datetime maybe changing
+            
 
             SpaceChecker(note.Text);
 
-            SpaceChecker(PropertyType.Text);
+            SpaceChecker(PropertyCondition.Text);//checking for spaces
             SpaceChecker(investmentNeed.Text);
             SpaceChecker(investmentEstimate.Text);
 
 
-            bool PropertyTypeToInt = int.TryParse(PropertyType.Text, out int intPropertyType);
+            bool PropertyConditionToInt = int.TryParse(PropertyCondition.Text, out int intPropertyCondition);//converting to int
             bool investementNeedToInt = int.TryParse(investmentNeed.Text, out int intInvestmentNeed);
             bool investmentEstimateToInt = int.TryParse(investmentEstimate.Text, out int intInvestmentEstimate);
 
-            
-            if ((PropertyTypeToInt == true) && (investementNeedToInt == true)&&(investmentEstimateToInt==true))
+
+            if ((PropertyConditionToInt == true) && (investementNeedToInt == true) && (investmentEstimateToInt == true))//if iit can be converted to int
             {
-                con.AddingToDatabase(date.SelectedDate.Value.ToShortDateString().ToString(),intPropertyType,combo.SelectedIndex, );
+                try
+                {
+                    //adds to database
+                    con.AddingToDatabase(date.SelectedDate.Value.ToShortDateString().ToString(), combo.SelectedIndex, intPropertyCondition, intInvestmentNeed, intInvestmentEstimate, note.Text.ToString());
+                    MessageBox.Show("added successfully");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
                 MessageBox.Show("Property type, investment need, investment estimate field must be a number not a text");
             }
+
         }
     }
 }
